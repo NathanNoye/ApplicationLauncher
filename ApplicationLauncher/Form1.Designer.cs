@@ -40,6 +40,7 @@
             this.pnlLaunch = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.txtFilter = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,12 +167,22 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Applications";
             // 
+            // txtFilter
+            // 
+            this.txtFilter.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilter.Location = new System.Drawing.Point(867, 7);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(376, 27);
+            this.txtFilter.TabIndex = 3;
+            this.txtFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtFilter_KeyUp);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1255, 678);
+            this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlLaunch);
             this.Controls.Add(this.panel1);
@@ -202,6 +213,7 @@
         private System.Windows.Forms.Button btnViewFolders;
         private System.Windows.Forms.Button btnProcesses;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TextBox txtFilter;
     }
 }
 

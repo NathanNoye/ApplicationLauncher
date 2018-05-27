@@ -39,18 +39,20 @@ namespace ApplicationLauncher
 
                 toolTip1.SetToolTip(btnLaunchApp, "Display all apps found in the folder specified in your user settings.");
                 toolTip1.SetToolTip(button1, "Set the folder to hold all your application shortcuts.");
+
+                this.ActiveControl = txtFilter;
             } catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
         
-        private void getApplications(string path)
+        private void getApplications(string path, string search = "*")
         {
             int xVal = 0;
             int yVal = 0;
 
-            foreach (var file in Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories))
+            foreach (var file in Directory.EnumerateFiles(path, search, SearchOption.AllDirectories))
             {
                 FileInfo info = new FileInfo(file);
 
@@ -129,6 +131,7 @@ namespace ApplicationLauncher
                 label1.Text = "Directories";
                 list.Clear();
                 pnlLaunch.Controls.Clear();
+                txtFilter.Visible = false;
 
                 int xVal = 0;
                 int yVal = 0;
@@ -201,6 +204,7 @@ namespace ApplicationLauncher
             list.Clear();
             pnlLaunch.Controls.Clear();
             getApplications(@Properties.Settings.Default.userFilePath);
+            txtFilter.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -208,6 +212,7 @@ namespace ApplicationLauncher
             label1.Visible = false;
             list.Clear();
             pnlLaunch.Controls.Clear();
+            txtFilter.Visible = false;
 
             Label l = new Label();
             l.Text = "Paste the file path to where your application links are stored.";
@@ -329,6 +334,14 @@ namespace ApplicationLauncher
             {
                 
             }
+        }
+
+        private void txtFilter_KeyUp(object sender, KeyEventArgs e)
+        {
+            list.Clear();
+            pnlLaunch.Controls.Clear();
+            string filter = "*" + txtFilter.Text + "*";
+            getApplications(@Properties.Settings.Default.userFilePath, filter);
         }
     }
 }
